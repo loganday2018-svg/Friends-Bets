@@ -439,6 +439,10 @@ def update_player(player_id: int, name: str, color: str):
 
     conn.commit()
     conn.close()
+    
+    # Clear cache to refresh data
+    get_players.clear()
+    get_bets.clear()
 
 
 # ==================== STREAMLIT UI ====================
@@ -460,14 +464,14 @@ def main():
     # Login/logout functionality
     from hashlib import sha256
 
-    # Mock user database
-    USER_DB = {
-        "friend1": sha256("password1".encode()).hexdigest(),
-        "friend2": sha256("password2".encode()).hexdigest(),
-        "Logan": sha256("Day".encode()).hexdigest(),
-    }
-
-    # Login function
+# Mock user database
+USER_DB = {
+    "friend1": sha256("password1".encode()).hexdigest(),
+    "friend2": sha256("password2".encode()).hexdigest(),
+    "Logan": sha256("Day".encode()).hexdigest(),
+    "Lincoln": sha256("Parsley".encode()).hexdigest(),
+    "Zach": sha256("Meyer".encode()).hexdigest(),
+}    # Login function
     def login():
         """Handle user login."""
         st.sidebar.header("Login")
@@ -856,7 +860,7 @@ def admin_tab():
     search_query = st.text_input("Search Player", placeholder="Enter player name", key="admin_search")
     filtered_players = players[players['name'].str.contains(search_query, case=False)] if search_query else players
 
-    st.subheader("Edit Players")
+    st.subheader("Edit Bettors")
 
     paginated_players = paginate_dataframe(filtered_players, page_size=5, key="admin_pagination")
 
