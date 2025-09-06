@@ -464,14 +464,16 @@ def main():
     # Login/logout functionality
     from hashlib import sha256
 
-# Mock user database
-USER_DB = {
-    "friend1": sha256("password1".encode()).hexdigest(),
-    "friend2": sha256("password2".encode()).hexdigest(),
-    "Logan": sha256("Day".encode()).hexdigest(),
-    "Lincoln": sha256("Parsley".encode()).hexdigest(),
-    "Zach": sha256("Meyer".encode()).hexdigest(),
-}    # Login function
+    # Mock user database
+    USER_DB = {
+        "friend1": sha256("password1".encode()).hexdigest(),
+        "friend2": sha256("password2".encode()).hexdigest(),
+        "Logan": sha256("Day".encode()).hexdigest(),
+        "Lincoln": sha256("Parsley".encode()).hexdigest(),
+        "Zach": sha256("Meyer".encode()).hexdigest(),
+    }
+
+    # Login function
     def login():
         """Handle user login."""
         st.sidebar.header("Login")
